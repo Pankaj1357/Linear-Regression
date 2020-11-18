@@ -26,9 +26,9 @@ def predict_price(area) -> float:
     pr = numpy.array(pr).astype(numpy.float)
 
 
-    #implementing polynomial linear regression
-    slopes = numpy.polyfit(ar, pr, deg=2)
-    ans = slopes[0]*area*area+ slopes[1]*area+ slopes[2]
+    #implementing linear regression
+    slopes = numpy.polyfit(ar, pr, deg=1)
+    ans = slopes[0]*area+ slopes[1]
     return ans
 
 
