@@ -9,7 +9,7 @@ from scipy import stats
 TRAIN_DATA_URL = "https://storage.googleapis.com/kubric-hiring/linreg_train.csv"
 TEST_DATA_URL = "https://storage.googleapis.com/kubric-hiring/linreg_test.csv"
 
-
+import matplotlib.pyplot as plt
 def predict_price(area) -> float:
     """
     This method must accept as input an array `area` (represents a list of areas sizes in sq feet) and must return the respective predicted prices (price per sq foot) using the linear regression model that you build.
@@ -26,10 +26,10 @@ def predict_price(area) -> float:
     ar = numpy.array(ar).astype(numpy.float)
     pr = numpy.array(pr).astype(numpy.float)
 
- 
-    slope, intercept, _, _, _ = stats.linregress(ar, pr)
 
-    ans = slope*area+ intercept
+    #implementing polynomial linear regression
+    slopes = numpy.polyfit(ar, pr, deg=2)
+    ans = slopes[0]*area*area+ slopes[1]*area+ slopes[2]
     return ans
 
 
