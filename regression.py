@@ -3,7 +3,6 @@ import pandas
 import scipy
 import numpy
 import sys
-from scipy import stats
 
 
 TRAIN_DATA_URL = "https://storage.googleapis.com/kubric-hiring/linreg_train.csv"
