@@ -5,6 +5,7 @@ import numpy
 import sys
 from scipy import stats
 
+
 TRAIN_DATA_URL = "https://storage.googleapis.com/kubric-hiring/linreg_train.csv"
 TEST_DATA_URL = "https://storage.googleapis.com/kubric-hiring/linreg_test.csv"
 
@@ -20,13 +21,15 @@ def predict_price(area) -> float:
     #...
     dt = response.text
     ar = dt.split('price')[0].strip().split(',')[1::]
-    price = dt.split('price')[-1].strip().split(',')[1::]
+    pr = dt.split('price')[-1].strip().split(',')[1::]
+
+    ar = numpy.array(ar).astype(numpy.float)
+    pr = numpy.array(pr).astype(numpy.float)
 
  
-    s, i, _, _, _ = stats.linregress(numpy.array(ar).astype(numpy.float), numpy.array(price).astype(numpy.float))
+    slope, intercept, _, _, _ = stats.linregress(ar, pr)
 
-    ans = s*area + i
-
+    ans = slope*area+ intercept
     return ans
 
 
